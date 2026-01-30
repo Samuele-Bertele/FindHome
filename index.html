@@ -543,18 +543,9 @@
                 <div class="filter-group">
                     <label>
                         <span class="label-icon">📍</span>
-                        Casa o appartamento
-                    </label>
-                    <input type="text" id="homeApartment" placeholder="Casa, appartamento">
-                    <span class="input-hint">Tipologia di residenza</span>
-                </div>
-
-                <div class="filter-group">
-                    <label>
-                        <span class="label-icon">📍</span>
                         Locazione
                     </label>
-                    <input type="text" id="locazione" placeholder="Casa, appartamento">
+                    <input type="text" id="locazione" placeholder="Casa, appartamento, ...">
                     <span class="input-hint">Locazione</span>
                 </div>
 
@@ -622,7 +613,6 @@
             const maxPrice = parseFloat(document.getElementById('maxPrice').value) || null;
             const minSize = parseFloat(document.getElementById('minSize').value) || null;
             const location = document.getElementById('location').value.trim() || null;
-            const homeApartment = document.getElementById('homeApartment').value.trim() || null;
             const locazione = document.getElementById('locazione').value.trim() || null;
             const stato = document.getElementById('stato').value.trim() || null;
 
@@ -647,7 +637,6 @@
                         max_price: maxPrice,
                         min_size: minSize,
                         location: location,
-                        homeApartment: homeApartment,
                         locazione: locazione,
                         stato: stato
                     })
@@ -751,7 +740,6 @@
             document.getElementById('maxPrice').value = '';
             document.getElementById('minSize').value = '';
             document.getElementById('location').value = '';
-            document.getElementById('homeApartment').value = '';
             document.getElementById('locazione').value = '';
             document.getElementById('stato').value = '';
             
