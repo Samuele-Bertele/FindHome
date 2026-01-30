@@ -428,36 +428,31 @@ def calculate_match_score(property_data: Dict,
 
     return min(100, score)
 
-
 if __name__ == "__main__":
     # Test
     scraper = IVGScraper()
     print("=== Test IVG Scraper ===\n")
 
     results = scraper.search_properties(
-        max_price=max_price,
-        min_size=min-size,
-        location=location,
-        locazione=locazione,
-        stato=stato
+        max_price=150000,
+        min_size=70,
+        location="Reggio Emilia",
+        locazione="Appartamento",
+        stato="Abitabile"
     )
 
     print(f"\n=== Risultati: {len(results)} immobili ===\n")
     for i, prop in enumerate(results[:5], 1):
         title = prop.get('title', 'N/D')
-        price = prop.get('price', 0) or 0
-        size = prop.get('size', 0) or 0
-        location_txt = prop.get('location', '') or ''
-        url = prop.get('url', '') or ''
+        price = prop.get('price', 0)
+        size = prop.get('size', 0)
+        location_txt = prop.get('location', '')
+        url = prop.get('url', '')
         print(f"{i}. {title}")
-        try:
-            print(f"   Prezzo: €{price:,.0f}")
-        except Exception:
-            print(f"   Prezzo: €{price}")
+        print(f"   Prezzo: €{price:,.0f}")
         print(f"   Superficie: {size} m²")
         print(f"   Località: {location_txt}")
         print(f"   URL: {url}")
-        # mostra campi aggiuntivi utili
         ppm = prop.get('price_per_m2')
         if ppm:
             print(f"   Prezzo €/m²: €{ppm}")
@@ -465,5 +460,4 @@ if __name__ == "__main__":
         print(f"   Stato: {prop.get('condition', 'N/D')}")
         print(f"   Piano: {prop.get('floor', 'N/D')}")
         print(f"   Stato asta: {prop.get('auction_type', 'N/D')}")
-        print(f"   Data asta: {prop.get('auction_date', 'N/D')}")
-        print()
+        print(f"   Data asta: {prop.get('auction_date', 'N/D')}\n")
