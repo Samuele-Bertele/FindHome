@@ -45,8 +45,8 @@ def search_properties():
             max_price = request.args.get('max_price', type=float)
             min_size = request.args.get('min_size', type=float)
             location = request.args.get('location', type=str)
-            locazione = data.get('locazione')
-            stato = data.get('stato')
+            locazione = request.args.get('locazione', type=str)
+            stato = request.args.get('stato', type=str)
 
         scraper = IVGScraper()
 
@@ -54,13 +54,13 @@ def search_properties():
             max_price=max_price,
             min_size=min_size,
             location=location,
-            locazione = locazione,
-            stato = stato,
+            locazione=locazione,
+            stato=stato,
         )
 
         for prop in properties:
             prop['matchScore'] = calculate_match_score(
-                prop, max_price, min_size, location, locazione, stato
+                prop, max_price, min_size, location, locazione=locazione, stato=stato
             )
 
         properties.sort(key=lambda x: x['matchScore'], reverse=True)
@@ -77,6 +77,7 @@ def search_properties():
             'error': str(e),
             'properties': []
         }), 500
+
 
 
 if __name__ == "__main__":
