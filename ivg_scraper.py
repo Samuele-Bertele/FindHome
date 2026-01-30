@@ -416,11 +416,6 @@ def calculate_match_score(property_data: Dict,
         elif any(w in prop_loc for w in loc_lower.split()):
             score += 6
 
-    # tipo (homeApartment)
-    if home_apartment and property_data.get('type'):
-        if home_apartment.lower() in property_data['type'].lower():
-            score += 5
-
     # locazione (se presente in testo)
     if locazione and property_data.get('type'):
         if locazione.lower() in (property_data.get('type', '') + ' ' + property_data.get('condition', '')).lower():
@@ -440,9 +435,11 @@ if __name__ == "__main__":
     print("=== Test IVG Scraper ===\n")
 
     results = scraper.search_properties(
-        max_price=150000,
-        min_size=70,
-        location="Reggio Emilia"
+        max_price=max_price,
+        min_size=min-size,
+        location=location,
+        locazione=locazione,
+        stato=stato
     )
 
     print(f"\n=== Risultati: {len(results)} immobili ===\n")
